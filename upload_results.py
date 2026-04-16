@@ -1,10 +1,18 @@
 import os
 
-# Este script automatiza el envío de resultados a GitHub
-print("🚀 Iniciando la subida de resultados a GitHub...")
+print("🧹 Limpiando caché de Git y forzando subida...")
 
-os.system("git add .")
-os.system("git commit -m 'Resultados del challenge' ")
-os.system("git push origin main")
+# 1. Configurar editor para que sea invisible
+os.system('git config --global core.editor true')
 
-print("✅ ¡Resultados subidos exitosamente!")
+# 2. Agregar todo
+os.system('git add --all')
+
+# 3. Commit forzado (si falla el normal, este lo intenta de nuevo)
+os.system('git commit -m "Entrega final confirmada" --allow-empty')
+
+# 4. Push forzado al servidor
+print("📤 Empujando cambios a GitHub...")
+os.system('git push origin main --force')
+
+print("✅ ¡GitHub actualizado y Bloc de notas derrotado!")

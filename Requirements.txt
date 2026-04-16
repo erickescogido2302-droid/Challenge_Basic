@@ -1,12 +1,21 @@
-<<<<<<< HEAD
-import mlflow
-import matplotlib.pyplot as plt
-import re
-import time
-=======
-import mlflow
-import matplotlib.pyplot as plt
-import re
-import time
->>>>>>> 89fcacdae579e33c8dc594844f2fa18a1eb14b75
-import pandas as pd
+# Análisis de Datos
+pandas
+numpy
+
+# NLP y Procesamiento de Texto
+nltk
+vaderSentiment
+pysentimiento
+spacy
+wordcloud
+
+# Visualización
+matplotlib
+seaborn
+
+# MLOps y Seguimiento
+mlflow
+
+# Utilidades
+scikit-learn
+langdetect
