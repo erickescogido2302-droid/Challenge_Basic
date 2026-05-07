@@ -1,9 +1,48 @@
-# Challenge_Basic
+# Glassdoor Sentiment Analysis: Bilingual NLP Pipeline
 
-El Objetivo: Análisis de Sentimiento en Glassdoor
+Este proyecto implementa un sistema automatizado para el análisis de sentimiento de reseñas de empleados extraídas de **Glassdoor**. La solución destaca por su capacidad de procesar contenido bilingüe y su integración con **MLflow** para la trazabilidad completa del ciclo de vida del aprendizaje automático.
 
-1. El corazón de tu proyecto es analizar las opiniones de empleados (los "Pros" o comentarios positivos) de la plataforma Glassdoor.
-2. ¿Qué se hizo? Tomaste un archivo CSV con reseñas y creaste un sistema que detecta automáticamente si el comentario es Positivo, Neutral o Negativo.
-3. Arquitectura del Código (Tu caja de herramientas)Tu proyecto no es solo un script suelto; tiene un diseño modular, lo que significa que separaste las tareas en diferentes archivos para que sea más fácil de mantener:  preprocessing.py: Aquí es donde "limpias" el texto. Eliminas caracteres especiales y espacios extra para que el modelo no se confunda con "ruido".  model_training.py: Es el cerebro del proyecto. Lo interesante aquí es su enfoque bilingüe:  Langdetect: Identifica si la reseña está en inglés o español.  VADER: Lo usas para el inglés (es excelente para textos cortos y redes sociales).  TextBlob: Lo usas para procesar las reseñas en español.
-4. Integración con MLOps (El toque profesional)Esta es la parte que más impresionará en tu exposición. Usaste MLflow para que tus experimentos sean trazables y reproducibles.  Servidor de Seguimiento: Registras cada vez que ejecutas el código en un servidor local (127.0.0.1:5000).  Evidencia: Guardas automáticamente métricas (cuántas reseñas procesaste) y artefactos, como la gráfica de barras reporte_sentimiento.png que se ve en la página 3 de tu documento.
-5. Resultados y EvidenciaEn las capturas de pantalla de tu reporte, se observa:Un Jupyter Notebook donde ejecutas la función run_mlops_pipeline(df).  Una gráfica de Resultados de Sentimiento que muestra la distribución de las reseñas procesadas.  Un repositorio en GitHub (challenge-basico) donde gestionas tu código, lo cual demuestra buenas prácticas de ingeniería de software.  
+## 📋 Descripción del Proyecto
+El sistema procesa reseñas estructuradas en formato CSV, enfocándose específicamente en los comentarios de la columna "Pros" para detectar la percepción de los empleados.
+
+### Características Principales:
+* **Detección Automática de Idioma**: Utiliza la librería `langdetect` para identificar si la reseña está en inglés o español antes del análisis.
+* **Enfoque Híbrido de Sentimiento**:
+    * **VADER**: Optimizado para textos en inglés, ideal para capturar matices en reseñas de redes sociales o comentarios cortos.
+    * **TextBlob**: Utilizado para asegurar una alta precisión en el procesamiento de textos en español.
+* **Clasificación Tri-modal**: El modelo recibe el texto, lo limpia y asigna un puntaje de sentimiento como **Positivo**, **Neutral** o **Negativo**.
+
+---
+
+## 🏗️ Arquitectura del Sistema
+El proyecto sigue un diseño modular para facilitar el mantenimiento y asegurar la portabilidad entre diferentes entornos:
+
+* **`preprocessing.py`**: Implementa la normalización de texto, incluyendo la eliminación de ruido (caracteres especiales, espacios extra) y el formateo para tareas de NLP.
+* **`model_training.py`**: Contiene la lógica bilingüe y los motores de análisis de sentimiento configurados para cada idioma.
+* **`mlops_pipeline.py`**: El orquestador que integra el ciclo de vida del modelo con MLflow, garantizando que cada ejecución sea documentada.
+
+---
+
+## 🚀 Integración con MLOps (MLflow)
+Para garantizar la reproducibilidad y el monitoreo, todas las ejecuciones se registran en un servidor local de MLflow:
+
+* **Gestión de Experimentos**: Las ejecuciones se agrupan bajo el experimento "Glassdoor_Analysis".
+* **Seguimiento de Métricas**: Se registra automáticamente el volumen de reseñas procesadas (`total_reviews`) en cada corrida.
+* **Almacenamiento de Artefactos**: Generación y almacenamiento automático de reportes visuales de resultados (`reporte_sentimiento.png`) para auditoría inmediata.
+
+---
+
+## 🛠️ Guía de Ejecución Local
+
+1. **Configurar el Entorno**: Asegúrate de tener instaladas las librerías necesarias: `pandas`, `mlflow`, `langdetect`, `nltk` y `textblob`.
+2. **Iniciar Servidor de Seguimiento**: Abre una terminal y ejecuta el comando para visualizar el dashboard:
+    ```bash
+    mlflow ui
+    ```
+3. **Ejecutar el Pipeline**: Abre el Jupyter Notebook en la carpeta `notebooks/`, carga los módulos de la carpeta `src/` y llama a la función `run_mlops_pipeline(df)`.
+4. **Visualizar Resultados**: Accede a `http://localhost:5000` para inspeccionar métricas y descargar los reportes de sentimiento generados.
+
+---
+
+**Autor**: Erick de Jesús Escogido Escobedo  
+**Programa**: Maestría en Ciencia de los Datos (MCD) - CUCEA
