@@ -1,1 +1,9 @@
 # Challenge_Basic
+
+El Objetivo: Análisis de Sentimiento en Glassdoor
+
+1. El corazón de tu proyecto es analizar las opiniones de empleados (los "Pros" o comentarios positivos) de la plataforma Glassdoor.
+2. ¿Qué se hizo? Tomaste un archivo CSV con reseñas y creaste un sistema que detecta automáticamente si el comentario es Positivo, Neutral o Negativo.
+3. Arquitectura del Código (Tu caja de herramientas)Tu proyecto no es solo un script suelto; tiene un diseño modular, lo que significa que separaste las tareas en diferentes archivos para que sea más fácil de mantener:  preprocessing.py: Aquí es donde "limpias" el texto. Eliminas caracteres especiales y espacios extra para que el modelo no se confunda con "ruido".  model_training.py: Es el cerebro del proyecto. Lo interesante aquí es su enfoque bilingüe:  Langdetect: Identifica si la reseña está en inglés o español.  VADER: Lo usas para el inglés (es excelente para textos cortos y redes sociales).  TextBlob: Lo usas para procesar las reseñas en español.
+4. Integración con MLOps (El toque profesional)Esta es la parte que más impresionará en tu exposición. Usaste MLflow para que tus experimentos sean trazables y reproducibles.  Servidor de Seguimiento: Registras cada vez que ejecutas el código en un servidor local (127.0.0.1:5000).  Evidencia: Guardas automáticamente métricas (cuántas reseñas procesaste) y artefactos, como la gráfica de barras reporte_sentimiento.png que se ve en la página 3 de tu documento.
+5. Resultados y EvidenciaEn las capturas de pantalla de tu reporte, se observa:Un Jupyter Notebook donde ejecutas la función run_mlops_pipeline(df).  Una gráfica de Resultados de Sentimiento que muestra la distribución de las reseñas procesadas.  Un repositorio en GitHub (challenge-basico) donde gestionas tu código, lo cual demuestra buenas prácticas de ingeniería de software.  
